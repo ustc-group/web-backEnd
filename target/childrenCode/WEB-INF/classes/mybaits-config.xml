@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--日志相关配置-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+
+    <!--mapper映射文件可以直接使用pojo名称作为数据类型-->
+    <typeAliases>
+        <package name="team.ustc.sse.blockly.entity"/>
+    </typeAliases>
+
+    <!--配置mapper映射文件的位置-->
+    <mappers>
+        <package name="team.ustc.sse.blockly.mapper"/>
+    </mappers>
+
+
+    <!--和spring整合之后，这里的environments配置将废除，转移到spring配置文件位置-->
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--指定事务管理的类型，这里简单使用Java的JDBC的提交和回滚设置-->
+            <!--<transactionManager type="JDBC" />-->
+            <!--dataSource 指连接源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="com.mysql.jdbc.Driver" />-->
+                <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/code?useUnicode=true&amp;characterEncoding=UTF-8" />-->
+                <!--<property name="username" value="root" />-->
+                <!--<property name="password" value="root" />-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+</configuration>

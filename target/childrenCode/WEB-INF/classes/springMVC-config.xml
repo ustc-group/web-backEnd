@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!--这个mvc:annotation-driven默认创建了：
+        两个注解映射器、
+        适配器RequestMappingHandlerMapping、
+        RequestMappingHandlerAdapter
+        并且还默认提供了json支持
+    -->
+    <mvc:annotation-driven/>
+
+
+    <!--springMVC的注解扫描，扫描的包为：controller包
+            扫描类、方法、属性上的注解
+    -->
+    <context:component-scan base-package="team.ustc.sse.blockly.controller"/>
+
+
+
+    <!-- 配置sprigmvc视图解析器：解析逻辑试图
+         后台返回逻辑试图：index
+        视图解析器解析出真正物理视图：前缀+逻辑试图+后缀====/WEB-INF/pages/index.jsp
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/">
+        </property>
+        <property name="suffix" value=".jsp">
+        </property>
+    </bean>
+
+
+    <!-- 支持返回json(避免IE在ajax请求时，返回json出现下载 ) -->
+    <bean id="utf8Charset" class="java.nio.charset.Charset"
+          factory-method="forName">
+        <constructor-arg value="UTF-8" />
+    </bean>
+</beans>

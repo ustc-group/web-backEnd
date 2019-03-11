@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+        <!--动态代理开发规则-->
+        <!--1.namespace必须是接口的全路径名-->
+        <!--2.接口的方法名必须和sql id一致-->
+        <!--3.接口输入参数和paremeterType类型一致-->
+        <!--4.接口的返回值必须与resultType类型一致-->
+
+
+<!--namespace隔离命名空间-->
+<mapper namespace="team.ustc.sse.blockly.mapper.StudentMapper">
+    <!--id是这个sql语句在mybatis里的唯一标识，parameterMap是条件的数据类型，resultType是返回结果数据类型，可以是pojo-->
+    <!--#{}符号用于关联上面的parameterMap，类似于jdbc的?占位符-->
+    <select id="getStudentByID" parameterType="Integer"
+            resultType="team.ustc.sse.blockly.entity.Student">
+    SELECT studentID,studentName,studentPassword,studentGender,studentAccount FROM `student` where studentID=#{studentID};
+    </select>
+
+
+    <select id="getStudentByName" parameterType="String"
+            resultType="team.ustc.sse.blockly.entity.Student">
+    SELECT studentID,studentName,studentPassword,studentGender,studentAccount FROM `student` where studentName LIKE #{studentName};
+    </select>
+
+    <!--插入时，id是递增字段，因此不应该有id的值-->
+    <insert id="insertStudent"
+            parameterType="team.ustc.sse.blockly.entity.Student" useGeneratedKeys="true" keyProperty="studentID">
+    insert into `student`(studentName, studentPassword, studentGender, studentAccount)
+    values (#{studentName},#{studentPassword},#{studentGender},#{studentAccount});
+    </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
